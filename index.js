@@ -5,7 +5,7 @@ async function run() {
     try {
         //Get input
         const tag = process.env.TAG || process.env.INPUT_TAG || '';
-        core.debug(`Searching for tag: ${tag}`);
+        console.log(`Searching for tag: ${tag}`);
 
         // Get owner and repo from context of payload that triggered the action
         const { owner, repo } = context.repo
