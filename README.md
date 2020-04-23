@@ -16,7 +16,7 @@ a string value of 'true' or 'false'
 ## Example usage
 
 ```js
-uses: actions/tag-exists@v0.0.4
+uses: actions/tag-exists@v1.0.0
 id: checkTag
 with:
   tag: 'v1
