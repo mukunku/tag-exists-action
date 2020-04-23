@@ -15,9 +15,11 @@ a string value of 'true' or 'false'
 
 ## Example usage
 
-```uses: actions/tag-exists@v0.0.4
+```js
+uses: actions/tag-exists@v0.0.4
 id: checkTag
 with:
   tag: 'v1
 
-run: echo ${{ steps.checkTag.outputs.exists }}```
+run: echo ${{ steps.checkTag.outputs.exists }}
+```
