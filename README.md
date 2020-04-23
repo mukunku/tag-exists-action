@@ -19,7 +19,7 @@ a string value of 'true' or 'false'
 uses: actions/tag-exists@v1.0.0
 id: checkTag
 with:
-  tag: 'v1
+  tag: 'v1'
 
 run: echo ${{ steps.checkTag.outputs.exists }}
 ```
