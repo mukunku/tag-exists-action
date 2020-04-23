@@ -3,16 +3,20 @@ const { context, GitHub } = require('@actions/github');
 
 async function run() {
     try {
+        //Get input
         const tag = process.env.TAG || process.env.INPUT_TAG || '';
+        core.debug(`Searching for tag: ${tag}`);
+        
+        // Get owner and repo from context of payload that triggered the action
+        const { owner, repo } = context.repo
 
         const github = new GitHub(process.env.GITHUB_TOKEN);
-
-        var exists = false;
+        var exists = 'false';
 
         try {
             const getRefResponse = await github.git.getRef({
-                owner: context.owner,
-                repo: context.repo,
+                owner,
+                repo,
                 ref: `tags/${tag}`
             });
 
@@ -20,7 +24,7 @@ async function run() {
             console.log(`getRef payload: ${payload}`);
 
             if (getRefResponse && getRefResponse.ref)
-                exists = true;
+                exists = 'true';
 
         } catch(error) {
             core.warning(`getRefResponse failed with error: ${error}`);
