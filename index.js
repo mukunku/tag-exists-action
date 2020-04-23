@@ -6,7 +6,7 @@ async function run() {
         //Get input
         const tag = process.env.TAG || process.env.INPUT_TAG || '';
         core.debug(`Searching for tag: ${tag}`);
-        
+
         // Get owner and repo from context of payload that triggered the action
         const { owner, repo } = context.repo
 
@@ -20,14 +20,13 @@ async function run() {
                 ref: `tags/${tag}`
             });
 
-            const payload = JSON.stringify(getRefResponse);
-            console.log(`getRef payload: ${payload}`);
-
-            if (getRefResponse && getRefResponse.ref)
+            if (getRefResponse.status === 200) {
+                console.log("Tag was found");
                 exists = 'true';
+            }
 
         } catch(error) {
-            core.warning(`getRefResponse failed with error: ${error}`);
+            console.log("Tag was not found");
         }
 
         core.setOutput('exists', exists);

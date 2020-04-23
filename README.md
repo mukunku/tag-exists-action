@@ -11,10 +11,13 @@ A Github action that determines if a tag exists
 
 ### `exists`
 
-true or false
+a string value of 'true' or 'false'
 
 ## Example usage
 
-uses: actions/tag-exists@v1
+```uses: actions/tag-exists@v0.0.4
+id: checkTag
 with:
-  tag: 'v1'
+  tag: 'v1
+
+run: echo ${{ steps.checkTag.outputs.exists }}```
