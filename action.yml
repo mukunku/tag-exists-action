@@ -8,7 +8,7 @@ outputs:
   exists: # id of output
     description: 'true or false'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'index.js'
 branding:
   icon: 'bookmark'  
