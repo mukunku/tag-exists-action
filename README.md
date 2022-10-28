@@ -16,7 +16,7 @@ a string value of 'true' or 'false'
 ## Example usage
 
 ```yaml
-- uses: mukunku/tag-exists-action@v1.0.0
+- uses: mukunku/tag-exists-action@v1.1.0
   id: checkTag
   with: 
     tag: 'v1'
