@@ -7,10 +7,6 @@ A Github action that determines if a tag exists
 
 **Required** The tag to search for.
 
-### `github_token`
-
-GitHub token. default: `${{github.token}}`
-
 ## Outputs
 
 ### `exists`
@@ -27,3 +23,5 @@ a string value of 'true' or 'false'
 
 - run: echo ${{ steps.checkTag.outputs.exists }}
 ```
+
+This action uses the `${{github.token}}` secret to automatically inject your access token. If you'd like to provide your own token instead check out [this help article](https://github.com/mukunku/tag-exists-action/wiki/Setting-the-GITHUB_TOKEN-explicitly)
