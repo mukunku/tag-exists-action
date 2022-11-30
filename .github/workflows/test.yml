@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'tag-exists-action: true'
+        id: checkTag
+        uses: ./
+        with: 
+          tag: 'v1.0.0'
+      - name: 'tag-exists-action: false'
+        id: notExist
+        uses: ./
+        with: 
+          tag: 'not-exist-tag-for-testing'
+
+      - name: Result of checkTag
+        run: test "true" = "${{ steps.checkTag.outputs.exists }}"
+      - name: Result of notExist
+        run: test "false" = "${{ steps.notExist.outputs.exists }}"
