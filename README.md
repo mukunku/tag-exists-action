@@ -7,6 +7,10 @@ A Github action that determines if a tag exists
 
 **Required** The tag to search for.
 
+### `github_token`
+
+GitHub token. default: `${{github.token}}`
+
 ## Outputs
 
 ### `exists`
@@ -20,8 +24,6 @@ a string value of 'true' or 'false'
   id: checkTag
   with: 
     tag: 'v1'
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 - run: echo ${{ steps.checkTag.outputs.exists }}
 ```
