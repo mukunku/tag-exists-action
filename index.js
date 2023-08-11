@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const { context, GitHub } = require('@actions/github');
+const github = require('@actions/github');
 
 async function run() {
     try {
@@ -8,13 +8,14 @@ async function run() {
         console.log(`Searching for tag: ${tag}`);
 
         // Get owner and repo from context of payload that triggered the action
-        const { owner, repo } = context.repo
+        const { owner, repo } = github.context.repo
 
-        const github = new GitHub(process.env.GITHUB_TOKEN || core.getInput('github_token'));
+        //const github = new GitHub(process.env.GITHUB_TOKEN || core.getInput('github_token'));
+        const octokit = github.getOctokit(process.env.GITHUB_TOKEN || core.getInput('github_token'));
         var exists = 'false';
 
         try {
-            const getRefResponse = await github.git.getRef({
+            const getRefResponse = await octokit.git.getRef({
                 owner,
                 repo,
                 ref: `tags/${tag}`
