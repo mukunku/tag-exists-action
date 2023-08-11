@@ -9,8 +9,7 @@ async function run() {
 
         // Get owner and repo from context of payload that triggered the action
         const { owner, repo } = github.context.repo
-        console.log(owner);
-        console.log(repo);
+        
         //const github = new GitHub(process.env.GITHUB_TOKEN || core.getInput('github_token'));
         const octokit = github.getOctokit(process.env.GITHUB_TOKEN || core.getInput('github_token'));
         var exists = 'false';
@@ -29,7 +28,6 @@ async function run() {
 
         } catch(error) {
             console.log("Tag was not found");
-            console.log(error);
         }
 
         core.setOutput('exists', exists);
