@@ -28,6 +28,7 @@ async function run() {
 
         } catch(error) {
             console.log("Tag was not found");
+            console.log(error);
         }
 
         core.setOutput('exists', exists);
