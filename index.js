@@ -16,7 +16,7 @@ async function run() {
         var exists = 'false';
 
         try {
-            const getRefResponse = await octokit.git.getRef({
+            const getRefResponse = await octokit.rest.git.getRef({
                 owner,
                 repo,
                 ref: `tags/${tag}`
