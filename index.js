@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const { Octokit } = require("@octokit/rest");
 
 async function run() {
     try {
@@ -9,7 +10,8 @@ async function run() {
 
         // Get owner and repo from context of payload that triggered the action
         const { owner, repo } = github.context.repo
-
+        console.log(owner);
+        console.log(repo);
         //const github = new GitHub(process.env.GITHUB_TOKEN || core.getInput('github_token'));
         const octokit = github.getOctokit(process.env.GITHUB_TOKEN || core.getInput('github_token'));
         var exists = 'false';
