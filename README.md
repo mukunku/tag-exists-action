@@ -14,7 +14,7 @@ A GitHub action that determines if a tag exists in your repo.
 a string value of 'true' or 'false'
 
 ## Example usage
-
+ 
 ```yaml
 - uses: mukunku/tag-exists-action@v1.3.0
   id: checkTag
