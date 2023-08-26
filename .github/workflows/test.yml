@@ -44,7 +44,13 @@ jobs:
       - name: Result of checkTag
         run: test "true" = "${{ steps.checkTag.outputs.exists }}"
       - name: Result of notExist
-        run: test "false" = "${{ steps.notExist.outputs.exists }}"
+        run: test "false" = "${{ steps.notExist.outputs.notExist }}"
+      - name: Result of externalRepoTagExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoTagExists }}"
+      - name: Result of externalRepoTagNotExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoTagNotExists }}"
+      - name: Result of externalRepoNotExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoNotExists }}"
 
   test-windows:
     name: Test Windows
@@ -83,7 +89,13 @@ jobs:
       - name: Result of checkTag
         run: test "true" = "${{ steps.checkTag.outputs.exists }}"
       - name: Result of notExist
-        run: test "false" = "${{ steps.notExist.outputs.exists }}"
+        run: test "false" = "${{ steps.notExist.outputs.notExist }}"
+      - name: Result of externalRepoTagExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoTagExists }}"
+      - name: Result of externalRepoTagNotExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoTagNotExists }}"
+      - name: Result of externalRepoNotExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoNotExists }}"
 
   test-macos:
     name: Test MacOS
@@ -122,4 +134,10 @@ jobs:
       - name: Result of checkTag
         run: test "true" = "${{ steps.checkTag.outputs.exists }}"
       - name: Result of notExist
-        run: test "false" = "${{ steps.notExist.outputs.exists }}"
+        run: test "false" = "${{ steps.notExist.outputs.notExist }}"
+      - name: Result of externalRepoTagExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoTagExists }}"
+      - name: Result of externalRepoTagNotExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoTagNotExists }}"
+      - name: Result of externalRepoNotExists
+        run: test "true" = "${{ steps.checkTag.outputs.externalRepoNotExists }}"
