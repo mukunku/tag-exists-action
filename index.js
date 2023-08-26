@@ -4,8 +4,8 @@ const github = require('@actions/github');
 async function run() {
     try {
         //Get input
-        const tag = process.env.TAG || process.env.INPUT_TAG || '';
-        const repoInput = process.env.GITHUB_REPOSITORY || core.getInput('repoInput')
+        const tag = process.env.TAG || process.env.INPUT_TAG || ''
+        const repoInput = core.getInput('repoInput') || process.env.GITHUB_REPOSITORY 
 
         console.log(`Searching for tag: ${tag} in ${repoInput}`);
 
