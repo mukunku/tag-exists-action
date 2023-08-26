@@ -5,7 +5,7 @@ async function run() {
     try {
         //Get input
         const tag = process.env.TAG || process.env.INPUT_TAG || '';
-        const repoInput = core.getInput('repoInput')
+        const repoInput = process.env.GITHUB_REPOSITORY || core.getInput('repoInput')
 
         console.log(`Searching for tag: ${tag} in ${repoInput}`);
 
