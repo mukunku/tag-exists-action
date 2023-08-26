@@ -53,10 +53,10 @@ jobs:
         run: test "false" = "${{ steps.notExist.outputs.exists }}"
       - name: Result of externalRepoTagExists
         if: always()
-        run: test "true" = "${{ steps.checkTag.externalRepoTagExists.exists }}"
+        run: test "true" = "${{ steps.externalRepoTagExists.outputs.exists }}"
       - name: Result of externalRepoTagNotExists
         if: always()
-        run: test "true" = "${{ steps.externalRepoTagNotExists.outputs.exists }}"
+        run: test "false" = "${{ steps.externalRepoTagNotExists.outputs.exists }}"
       - name: Result of externalRepoNotExists
         if: always()
-        run: test "true" = "${{ steps.externalRepoNotExists.outputs.exists }}"
+        run: test "false" = "${{ steps.externalRepoNotExists.outputs.exists }}"
