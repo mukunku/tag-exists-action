@@ -5,10 +5,13 @@ async function run() {
     try {
         //Get input
         const tag = process.env.TAG || process.env.INPUT_TAG || '';
-        console.log(`Searching for tag: ${tag}`);
+        const repoInput = core.getInput('repoInput')
+
+        console.log(`Searching for tag: ${tag} in ${repoInput}`);
 
         // Get owner and repo from context of payload that triggered the action
-        const { owner, repo } = github.context.repo
+        const [ owner, ...repository ] = repoInput.split('/')
+        const repo = repository.join('/')
         
         const octokit = github.getOctokit(process.env.GITHUB_TOKEN || core.getInput('github_token'));
         var exists = 'false';

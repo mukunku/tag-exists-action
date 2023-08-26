@@ -20,6 +20,7 @@ a string value of 'true' or 'false'
   id: checkTag
   with: 
     tag: 'tag-to-search-for'
+    repo: 'owner/repo-name'
 
 - run: echo ${{ steps.checkTag.outputs.exists }}
 ```
