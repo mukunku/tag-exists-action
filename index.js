@@ -4,14 +4,14 @@ const github = require('@actions/github');
 async function run() {
     try {
         //Get input
-        const tag = process.env.TAG || process.env.INPUT_TAG || ''
-        const repoInput = core.getInput('repo') || process.env.GITHUB_REPOSITORY 
+        const tag = process.env.TAG || process.env.INPUT_TAG || '';
+        const repoInput = core.getInput('repo') || process.env.GITHUB_REPOSITORY;
 
         console.log(`Searching for tag: ${tag} in ${repoInput}`);
 
         // Get owner and repo from context of payload that triggered the action
-        const [ owner, ...repository ] = repoInput.split('/')
-        const repo = repository.join('/')
+        const [ owner, ...repository ] = repoInput.split('/');
+        const repo = repository.join('/');
         
         const octokit = github.getOctokit(process.env.GITHUB_TOKEN || core.getInput('github_token'));
         var exists = 'false';
