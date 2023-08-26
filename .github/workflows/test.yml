@@ -8,8 +8,9 @@ on:
 
 jobs:
   test:
-    name: Test Unix
+    name: Run Operating System Tests 
     strategy: 
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
@@ -49,13 +50,13 @@ jobs:
         run: test "true" = "${{ steps.checkTag.outputs.exists }}"
       - name: Result of notExist
         if: always()
-        run: test "false" = "${{ steps.notExist.outputs.notExist }}"
+        run: test "false" = "${{ steps.notExist.outputs.exists }}"
       - name: Result of externalRepoTagExists
         if: always()
-        run: test "true" = "${{ steps.checkTag.outputs.externalRepoTagExists }}"
+        run: test "true" = "${{ steps.checkTag.externalRepoTagExists.exists }}"
       - name: Result of externalRepoTagNotExists
         if: always()
-        run: test "true" = "${{ steps.checkTag.outputs.externalRepoTagNotExists }}"
+        run: test "true" = "${{ steps.externalRepoTagNotExists.outputs.exists }}"
       - name: Result of externalRepoNotExists
         if: always()
-        run: test "true" = "${{ steps.checkTag.outputs.externalRepoNotExists }}"
+        run: test "true" = "${{ steps.externalRepoNotExists.outputs.exists }}"
