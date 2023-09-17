@@ -7,9 +7,13 @@ on:
       - master
 
 jobs:
-  test-unix:
-    name: Test Unix
-    runs-on: ubuntu-latest
+  test:
+    name: Run Operating System Tests 
+    strategy: 
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - name: 'tag-exists-action: true'
@@ -22,50 +26,37 @@ jobs:
         uses: ./
         with: 
           tag: 'not-exist-tag-for-testing'
-
-      - name: Result of checkTag
-        run: test "true" = "${{ steps.checkTag.outputs.exists }}"
-      - name: Result of notExist
-        run: test "false" = "${{ steps.notExist.outputs.exists }}"
-
-  test-windows:
-    name: Test Windows
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: 'tag-exists-action: true'
-        id: checkTag
+      - name: 'tag-exists-action: external repo - true'
+        id: externalRepoTagExists
         uses: ./
         with: 
-          tag: 'v1.0.0'
-      - name: 'tag-exists-action: false'
-        id: notExist
+          tag: 'v3.6.0'
+          repo: 'actions/checkout'
+      - name: 'tag-exists-action: external repo - false'
+        id: externalRepoTagNotExists
         uses: ./
         with: 
           tag: 'not-exist-tag-for-testing'
-
-      - name: Result of checkTag
-        run: test "true" = "${{ steps.checkTag.outputs.exists }}"
-      - name: Result of notExist
-        run: test "false" = "${{ steps.notExist.outputs.exists }}"
-
-  test-macos:
-    name: Test MacOS
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: 'tag-exists-action: true'
-        id: checkTag
-        uses: ./
-        with: 
-          tag: 'v1.0.0'
-      - name: 'tag-exists-action: false'
-        id: notExist
+          repo: 'actions/checkout'
+      - name: 'tag-exists-action: external repo exists - false'
+        id: externalRepoNotExists
         uses: ./
         with: 
           tag: 'not-exist-tag-for-testing'
+          repo: 'fakeRepo/fakerepo'
 
       - name: Result of checkTag
+        if: always()
         run: test "true" = "${{ steps.checkTag.outputs.exists }}"
       - name: Result of notExist
+        if: always()
         run: test "false" = "${{ steps.notExist.outputs.exists }}"
+      - name: Result of externalRepoTagExists
+        if: always()
+        run: test "true" = "${{ steps.externalRepoTagExists.outputs.exists }}"
+      - name: Result of externalRepoTagNotExists
+        if: always()
+        run: test "false" = "${{ steps.externalRepoTagNotExists.outputs.exists }}"
+      - name: Result of externalRepoNotExists
+        if: always()
+        run: test "false" = "${{ steps.externalRepoNotExists.outputs.exists }}"

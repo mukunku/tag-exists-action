@@ -4,6 +4,9 @@ inputs:
   tag:  
     description: 'Tag to search for'
     required: true
+  repo:  
+    description: 'Repo to search for given tag'
+    default: ${{ github.repository }}
   github_token:
     description: GitHub token
     default: ${{ github.token }}
