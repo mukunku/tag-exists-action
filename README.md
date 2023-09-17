@@ -1,26 +1,41 @@
 # tag-exists-action
-A GitHub action that determines if a tag exists in your repo.
+A GitHub action that determines if a tag exists in a repo.
 
 ## Inputs
 
-### `tag`
+### `tag` 
 
-**Required** The tag to search for.
+**Required** - The tag to search for.
+
+### `repo`
+
+**Optional** - External repo you'd like to search, in `owner/repo-name` format.
 
 ## Outputs
 
 ### `exists`
 
-a string value of 'true' or 'false'
+A string value of 'true' or 'false'
 
-## Example usage
+## Example usages
 
+To check if the tag `v1.0` exists in your repo:
 ```yaml
-- uses: mukunku/tag-exists-action@v1.3.0
+- uses: mukunku/tag-exists-action@v1.4.0
   id: checkTag
   with: 
-    tag: 'tag-to-search-for'
-    repo: 'owner/repo-name'
+    tag: 'v1.0'
+
+- run: echo ${{ steps.checkTag.outputs.exists }}
+```
+
+To check if the tag [`v1.0.0`](https://github.com/actions/checkout/releases/tag/v1.0.0) exists in the repo `actions/checkout`:
+```yaml
+- uses: mukunku/tag-exists-action@v1.4.0
+  id: checkTag
+  with: 
+    tag: 'v1.0.0'
+    repo: 'actions/checkout'
 
 - run: echo ${{ steps.checkTag.outputs.exists }}
 ```
