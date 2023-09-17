@@ -9,6 +9,10 @@ async function run() {
 
         console.log(`Searching for tag: ${tag} in ${repoInput}`);
 
+        if (!repoInput.contains('/')) {
+            throw new Error(`${repoInput} is not a valid repo`);  
+        }
+            
         // Get owner and repo from context of payload that triggered the action
         const [ owner, ...repository ] = repoInput.split('/');
         const repo = repository.join('/');
