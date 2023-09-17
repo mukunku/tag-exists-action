@@ -9,7 +9,7 @@ A GitHub action that determines if a tag exists in a repo.
 
 ### `repo`
 
-**Optional** - External repo you'd like to search, in `owner/repo-name` format.
+**Optional** - Repo you'd like to search, in `owner/repo-name` format.
 
 ## Outputs
 
