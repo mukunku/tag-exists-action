@@ -9,7 +9,7 @@ async function run() {
 
         console.log(`Searching for tag: ${tag} in ${repoInput}`);
 
-        if (!repoInput.contains('/')) {
+        if (!repoInput.includes('/')) {
             throw new Error(`${repoInput} is not a valid repo`);  
         }
             
