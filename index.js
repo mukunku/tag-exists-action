@@ -30,15 +30,22 @@ async function run() {
             if (getRefResponse.status === 200) {
                 console.log("Tag was found");
                 exists = 'true';
+            } else {
+                core.setFailed("Unknown status was returned: " + getRefResponse.status);
             }
 
         } catch(error) {
-            console.log("Tag was not found");
+            if (error.status === 404) {
+              console.log("Tag was not found");
+            } else {
+              core.setFailed("Unknown status was returned: " + error.status);
+              console.error(error);
+            }
         }
-
         core.setOutput('exists', exists);
     } catch (error) {
         core.setFailed(error.message);
+        console.error(error);
     }
 }
 
