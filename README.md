@@ -26,7 +26,8 @@ To check if the tag `v1.0` exists in your repo:
   with: 
     tag: 'v1.0'
 
-- run: echo ${{ steps.check-tag.outputs.exists }}
+- run: echo "Tag exists!"
+  if: ${{ steps.check-tag.outputs.exists == 'true' }}
 ```
 
 To check if the tag [`v1.0.0`](https://github.com/actions/checkout/releases/tag/v1.0.0) exists in the repo `actions/checkout`:
@@ -37,7 +38,8 @@ To check if the tag [`v1.0.0`](https://github.com/actions/checkout/releases/tag/
     tag: 'v1.0.0'
     repo: 'actions/checkout'
 
-- run: echo ${{ steps.check-tag.outputs.exists }}
+- run: echo "Tag exists!"
+  if: steps.check-tag.outputs.exists == 'true' # you can drop ${{ }} on 'if' checks
 ```
 
 <hr>
