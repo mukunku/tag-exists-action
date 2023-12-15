@@ -17,46 +17,46 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: 'tag-exists-action: true'
-        id: checkTag
+        id: exists
         uses: ./
         with: 
           tag: 'v1.0.0'
       - name: 'tag-exists-action: false'
-        id: notExist
+        id: not-exists
         uses: ./
         with: 
           tag: 'not-exist-tag-for-testing'
       - name: 'tag-exists-action: external repo - true'
-        id: externalRepoTagExists
+        id: external-repo-tag-exists
         uses: ./
         with: 
           tag: 'v3.6.0'
           repo: 'actions/checkout'
       - name: 'tag-exists-action: external repo - false'
-        id: externalRepoTagNotExists
+        id: external-repo-tag-not-exists
         uses: ./
         with: 
           tag: 'not-exist-tag-for-testing'
           repo: 'actions/checkout'
       - name: 'tag-exists-action: external repo exists - false'
-        id: externalRepoNotExists
+        id: external-repo-not-exists
         uses: ./
         with: 
           tag: 'not-exist-tag-for-testing'
           repo: 'fakeRepo/fakerepo'
 
-      - name: Result of checkTag
+      - name: Result of exists
         if: always()
-        run: test "true" = "${{ steps.checkTag.outputs.exists }}"
-      - name: Result of notExist
+        run: test "true" = "${{ steps.exists.outputs.exists }}"
+      - name: Result of not-exists
         if: always()
-        run: test "false" = "${{ steps.notExist.outputs.exists }}"
-      - name: Result of externalRepoTagExists
+        run: test "false" = "${{ steps.not-exists.outputs.exists }}"
+      - name: Result of external-repo-tag-exists
         if: always()
-        run: test "true" = "${{ steps.externalRepoTagExists.outputs.exists }}"
-      - name: Result of externalRepoTagNotExists
+        run: test "true" = "${{ steps.external-repo-tag-exists.outputs.exists }}"
+      - name: Result of external-repo-tag-not-exists
         if: always()
-        run: test "false" = "${{ steps.externalRepoTagNotExists.outputs.exists }}"
-      - name: Result of externalRepoNotExists
+        run: test "false" = "${{ steps.external-repo-tag-not-exists.outputs.exists }}"
+      - name: Result of external-repo-not-exists
         if: always()
-        run: test "false" = "${{ steps.externalRepoNotExists.outputs.exists }}"
+        run: test "false" = "${{ steps.external-repo-not-exists.outputs.exists }}"
