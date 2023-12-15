@@ -63,3 +63,10 @@ jobs:
 
       - run: echo "yes"
         if: ${{ steps.exists.outputs.exists == 'true' }}
+      - run: echo "no"
+        if: steps.not-exists.outputs.exists == 'false'
+
+      - run: echo "yesxxxxx"
+        if: ${{ steps.exists.outputs.exists == 'false' }}
+      - run: echo "noxxxxx"
+        if: steps.not-exists.outputs.exists == 'true'
