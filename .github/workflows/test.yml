@@ -60,3 +60,6 @@ jobs:
       - name: Result of external-repo-not-exists
         if: always()
         run: test "false" = "${{ steps.external-repo-not-exists.outputs.exists }}"
+
+      - run: echo "yes"
+        if: ${{ steps.exists.outputs.exists == 'true' }}
