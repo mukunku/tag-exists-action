@@ -21,25 +21,25 @@ A string value of 'true' or 'false'
 
 To check if the tag `v1.0` exists in your repo:
 ```yaml
-- uses: mukunku/tag-exists-action@v1.5.0
+- uses: mukunku/tag-exists-action@v1.6.0
   id: check-tag
   with: 
     tag: 'v1.0'
 
 - run: echo "Tag exists!"
-  if: ${{ steps.check-tag.outputs.exists == 'true' }}
+  if: steps.check-tag.outputs.exists == 'true' 
 ```
 
 To check if the tag [`v1.0.0`](https://github.com/actions/checkout/releases/tag/v1.0.0) exists in the repo `actions/checkout`:
 ```yaml
-- uses: mukunku/tag-exists-action@v1.5.0
+- uses: mukunku/tag-exists-action@v1.6.0
   id: check-tag
   with: 
     tag: 'v1.0.0'
     repo: 'actions/checkout'
 
 - run: echo "Tag exists!"
-  if: steps.check-tag.outputs.exists == 'true' # you can drop ${{ }} on 'if' checks
+  if: steps.check-tag.outputs.exists == 'true'
 ```
 
 <hr>
