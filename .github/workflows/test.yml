@@ -30,8 +30,8 @@ jobs:
         id: external-repo-tag-exists
         uses: ./
         with: 
-          tag: 'v3.6.0'
-          repo: 'actions/checkout'
+          tag: 'v4.7.0-rev2'
+          repo: 'pubinary/coppeliasim'
       - name: 'tag-exists-action: external repo - false'
         id: external-repo-tag-not-exists
         uses: ./
