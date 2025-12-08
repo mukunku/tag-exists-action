@@ -21,7 +21,7 @@ A string value of 'true' or 'false'
 
 To check if the tag `v1.0` exists in your repo:
 ```yaml
-- uses: mukunku/tag-exists-action@v1.6.0
+- uses: mukunku/tag-exists-action@v1.7.0
   id: check-tag
   with: 
     tag: 'v1.0'
@@ -32,7 +32,7 @@ To check if the tag `v1.0` exists in your repo:
 
 To check if the tag [`v1.0.0`](https://github.com/actions/checkout/releases/tag/v1.0.0) exists in the repo `actions/checkout`:
 ```yaml
-- uses: mukunku/tag-exists-action@v1.6.0
+- uses: mukunku/tag-exists-action@v1.7.0
   id: check-tag
   with: 
     tag: 'v1.0.0'
