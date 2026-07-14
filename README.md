@@ -1,6 +1,8 @@
 # tag-exists-action
 A GitHub action that determines if a tag exists in a repo.
 
+Additionally see: [release-exists-action](https://github.com/mukunku/release-exists-action)
+
 ## Inputs
 
 ### `tag` 
